@@ -1,9 +1,9 @@
 # mysql-mha
 
-  系统：  ubuntu20 <br\>
-  mysql 版本： mysql8.0 <br\>
-  mha版本 mha4mysql-manager_0.58-0_all.deb   mha4mysql-node_0.58-0_all.deb  <br\>
-  mha官方网址： https://github.com/yoshinorim/  <br\>
+  系统：  ubuntu20 \<br\>
+  mysql 版本： mysql8.0 \<br\>
+  mha版本 mha4mysql-manager_0.58-0_all.deb   mha4mysql-node_0.58-0_all.deb  \<br\>
+  mha官方网址： https://github.com/yoshinorim/  \<br\>
 
 
 PS： 使用root 部署的。

@@ -8,7 +8,7 @@ mha官方网址： https://github.com/yoshinorim/
   
   PS： 使用root 部署的。
   
-  #1. 主机设计
+  1. 主机设计
   172.16.0.101   master  ，VIP（172.16.0.107）
   172.16.0.100   slave (backup master)
   172.16.0.102   slave and  mha manager
@@ -78,7 +78,7 @@ mha官方网址： https://github.com/yoshinorim/
   执行完成后 ，systemctl restart  mysql.service  ；systemctl status  mysql.service
   
   6. 为主从复制创建账号
-master:
+  master:
   mysql -u root -p  输入root密码
   CREATE USER 'replication'@'%' IDENTIFIED WITH mysql_native_password BY 'Ata@123456';
   GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
@@ -87,3 +87,12 @@ master:
   exit;
 ```
   ![image](https://github.com/sky1230/mysql-mha/assets/8722731/322667c6-59b0-428a-8288-47241895125f)
+```
+  其他2个节点：
+  mysql -u root -p
+STOP SLAVE;
+CHANGE MASTER TO MASTER_HOST='主服务器IP地址', MASTER_USER='replication', MASTER_PASSWORD='replication', MASTER_LOG_FILE='主服务器的二进制日志文件名', MASTER_LOG_POS=主服务器的二进制日志位置;
+START SLAVE;
+exit;
+ps: MASTER_LOG_FILE  ，MASTER_LOG_POS 就是在master节点执行的 show master  status;  file 和Position 的值。
+```

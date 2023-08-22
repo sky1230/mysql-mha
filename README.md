@@ -7,7 +7,8 @@ mha官方网址： https://github.com/yoshinorim/
   
   
   PS： 使用root 部署的。
-  
+
+#mysql主从配置
   1. 主机设计
   172.16.0.101   master  ，VIP（172.16.0.107）
   172.16.0.100   slave (backup master)
@@ -127,7 +128,9 @@ delete from myinfo  where  id=3
 
 update myinfoset  age=100  where id=2
 主要主库发生删除和修改，就在从库上执行： 
-select  * from  my_table;
+select  * from  myinfo;
 
 如果在主库上执行增删改，从库数据保持一致表示，mysql 主从配置完成。
 ```
+
+#安装MHA

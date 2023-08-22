@@ -1,4 +1,3 @@
-# mysql-mha
 ```
 系统：  ubuntu20
 mysql 版本： mysql8.0
@@ -7,8 +6,9 @@ mha官方网址： https://github.com/yoshinorim/
   
   
   PS： 使用root 部署的。
-
+```
 #mysql主从配置
+```
   1. 主机设计
   172.16.0.101   master  ，VIP（172.16.0.107）
   172.16.0.100   slave (backup master)

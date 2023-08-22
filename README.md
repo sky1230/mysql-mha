@@ -8,7 +8,7 @@ mha官方网址： https://github.com/yoshinorim/
   
   PS： 使用root 部署的。
   
-  1. 主机设计
+  #1. 主机设计
   172.16.0.101   master  ，VIP（172.16.0.107）
   172.16.0.100   slave (backup master)
   172.16.0.102   slave and  mha manager

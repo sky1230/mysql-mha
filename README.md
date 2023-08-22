@@ -80,7 +80,7 @@ mha官方网址： https://github.com/yoshinorim/
   6. 为主从复制创建账号
   master:
   mysql -u root -p  输入root密码
-  CREATE USER 'replication'@'%' IDENTIFIED WITH mysql_native_password BY 'Ata@123456';
+  CREATE USER 'replication'@'%' IDENTIFIED WITH mysql_native_password BY 'replication';
   GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
   FLUSH PRIVILEGES;
   show  master  status;
@@ -94,5 +94,40 @@ STOP SLAVE;
 CHANGE MASTER TO MASTER_HOST='主服务器IP地址', MASTER_USER='replication', MASTER_PASSWORD='replication', MASTER_LOG_FILE='主服务器的二进制日志文件名', MASTER_LOG_POS=主服务器的二进制日志位置;
 START SLAVE;
 exit;
+
+以上执行完成，在3台机器都执行，systemctl  restart  mysql 
 ps: MASTER_LOG_FILE  ，MASTER_LOG_POS 就是在master节点执行的 show master  status;  file 和Position 的值。
+
+
+在主从服务器上执行:
+sudo systemctl start mysql
+
+CREATE DATABASE test;
+use  test;
+
+CREATE TABLE myinfo(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255),
+  age INT,
+  PRIMARY KEY (id)
+);
+
+INSERT INTO   myinfo(name, age) VALUES
+  ('John Doe', 20),
+  ('Jane Doe', 21);
+
+
+查询结果： 
+select  * from myinfo;
+在主库上执行 
+
+ INSERT INTO myinfo(name, age) VALUES('master',1);
+
+delete from myinfo  where  id=3
+
+update myinfoset  age=100  where id=2
+主要主库发生删除和修改，就在从库上执行： 
+select  * from  my_table;
+
+如果在主库上执行增删改，从库数据保持一致表示，mysql 主从配置完成。
 ```

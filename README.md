@@ -1,5 +1,5 @@
 # mysql-mha
-
+```
 系统：  ubuntu20
 mysql 版本： mysql8.0
 mha版本 mha4mysql-manager_0.58-0_all.deb   mha4mysql-node_0.58-0_all.deb
@@ -85,4 +85,5 @@ master:
   FLUSH PRIVILEGES;
   show  master  status;
   exit;
+```
   ![image](https://github.com/sky1230/mysql-mha/assets/8722731/322667c6-59b0-428a-8288-47241895125f)
